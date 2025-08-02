@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Preparing your Download</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+    .timer { font-size: 40px; margin: 20px; color: #ff4500; }
+    .hidden { display: none; }
+    .scroll-hint { margin-top: 40px; font-size: 18px; color: #555; }
+    .next-link { display: none; margin-top: 60px; }
+    .next-link a { font-size: 20px; color: blue; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Almost there!</h1>
+  <p>Please wait while we prepare your download.</p>
+  <div class="timer" id="timer">10</div>
+
+  <div class="scroll-hint hidden" id="scrollHint">
+    👇 Scroll down to continue...
+  </div>
+
+  <div class="next-link" id="nextLink">
+    <a href="final.html">Continue to Download</a>
+  </div>
+
+  <script>
+    let timeLeft = 10;
+    const timer = document.getElementById('timer');
+    const scrollHint = document.getElementById('scrollHint');
+    const nextLink = document.getElementById('nextLink');
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timer.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        scrollHint.classList.remove('hidden');
+      }
+    }, 1000);
+
+    window.addEventListener('scroll', () => {
+      if (!scrollHint.classList.contains('hidden')) {
+        nextLink.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
