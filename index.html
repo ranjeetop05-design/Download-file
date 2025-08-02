@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    #next-section {
+      margin-top: 800px; /* Forces scroll */
+      display: none;
+    }
+    #next-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Download Link</h2>
+  <p>Please wait <span id="timer">20</span> seconds...</p>
+
+  <!-- Ad area -->
+  <div style="margin: 30px 0;">
+    <!-- Insert Adsterra/PropellerAds script here -->
+    <p>[Ad Placeholder]</p>
+  </div>
+
+  <div id="scroll-msg" style="display: none;">
+    <p>Scroll down to continue ⬇️</p>
+  </div>
+
+  <!-- Hidden section that appears after scrolling -->
+  <div id="next-section">
+    <p>Your link is almost ready!</p>
+    <a href="next.html"><button id="next-btn">Go to Next Page</button></a>
+  </div>
+
+  <script>
+    let time = 20;
+    let timer = document.getElementById("timer");
+    let scrollMsg = document.getElementById("scroll-msg");
+    let nextSection = document.getElementById("next-section");
+    let nextBtn = document.getElementById("next-btn");
+
+    function countdown() {
+      if (time > 0) {
+        timer.innerText = time;
+        time--;
+        setTimeout(countdown, 1000);
+      } else {
+        scrollMsg.style.display = "block";
+      }
+    }
+
+    window.onload = countdown;
+
+    // When user scrolls, show the next section
+    window.addEventListener('scroll', function () {
+      if (scrollMsg.style.display === "block") {
+        nextSection.style.display = "block";
+        nextBtn.style.display = "inline-block";
+      }
+    });
+  </script>
+
+</body>
+</html>
